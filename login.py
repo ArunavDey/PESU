@@ -1,11 +1,11 @@
 #loginasadmin 
-login_id="LIBRARIANPESIT"
-password="kdjjjfjbu321"
-l_id=input("enter login id:")
-passwd=input("enter password:")
+login_id="PESUAdmin"
+password="admin123"
+l_id=""
+passwd=""
 while(l_id!=login_id or passwd!=password):
-  l_id=input("enter login id:")
-  passwd=input("enter password:")
-  if(l_id!=login_id or passwd!=password):
-    print("invalid username or password")
-print("logged in successfully")
+    l_id=input("Enter login ID:")
+    passwd=input("Enter password:")
+    if(l_id!=login_id or passwd!=password):
+        print("Invalid username or password.")
+print("Logged in\n")
