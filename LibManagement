@@ -1,0 +1,65 @@
+admins = {"PESUAdmin":[["01","01","2001"],["01","01","2019"],["admin123"]]}
+members = {}
+def login():
+    l_id=""
+    passwd=""
+    pw = False
+    while pw is False:
+        l_id=input("Enter login ID:")
+        passwd=input("Enter password:")
+        if l_id in admins:
+            if passwd == admins[l_id][2][0]:
+                pw = True
+            else:
+                print("\nInvalid username or password\n")
+        else:
+            print("\nInvalid username or password\n")
+    print(f"\nLogged in\n")
+    def newreg():
+        name = input("\nEnter Full name: ")
+        dob = input("Enter Date of Birth (DD/MM/YYYY): ").split("/")
+        date = input("Enter Date of Registration (DD/MM/YYYY): ").split("/")
+        adm = input("Admin Permissions [Y/N]: ")
+        adm = adm.upper()
+        l = []
+        l.append(dob)
+        l.append(date)
+        if adm == "Y":
+            pw = input("\nEnter a password: ")
+            pw1 = input("\nRe-enter the password to confirm: ")
+            while pw1 != pw:
+                print("Passwords do not match, try again")
+                pw1 = input("\nRe-enter the password to confirm: ")
+            l.append(pw)
+            admins[name] = l
+        elif adm == "N":
+            members[name] = l
+        else:
+            while adm != "Y" and adm != "N":
+                print("\nInvalid option, try again")
+                adm = input("Admin Permissions [Y/N]: ")
+                adm = adm.upper()
+        print("\nRegistration successful\n")
+        c = True
+    def mem():
+        c = 1
+        for i in admins:
+            print(f"\n{c}. {i} | DOB: {int(admins[i][0][0])}/{int(admins[i][0][1])}/{int(admins[i][0][2])} | Reg. Date: {int(admins[i][1][0])}/{int(admins[i][1][1])}/{int(admins[i][1][2])}\n")
+        for i in members:
+            print(f"\n{c}. {i} | DOB: {int(members[i][0][0])}/{int(members[i][0][1])}/{int(members[i][0][2])} | Reg. Date: {int(members[i][1][0])}/{int(members[i][1][1])}/{int(members[i][1][2])}\n")
+    c = True
+    while c is True:
+        opt1 = int(input("1.Register new Members\n2.View Members\n3.Log out\n"))
+        if opt1 == 1:
+            newreg()
+        elif opt1 == 2:
+            mem()
+        elif opt1 == 3:
+            print("\nLogged out\n")
+            login()
+            c = False
+        else:
+            while opt1 != 1 or opt1 != 2 or opt1 != 3:
+                print("\nInvalid option, try again")
+                opt1 = int(input("\n1.Register new Members\n2.View Members\n3.Log out\n"))
+login()
