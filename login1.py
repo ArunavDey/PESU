@@ -14,10 +14,20 @@ with open('key.txt','rb') as file:
 with open('iv.txt','rb') as file:
 	iv=file.read()	
 	file.close()
+#greet the pesit library admin
+print("Hello Admin!Welcome to PESU ECC Library".center(40),"$")
 #create a decipher to decrypt ciphertext
 decipher=AES.new(key,AES.MODE_CFB,iv) 
 plaintext=decipher.decrypt(ctext)
 import time
+from datetime import datetime
+# datetime object containing current date and time
+now = datetime.now()
+# dd/mm/YY H:M:S
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+print("date and time =", dt_string)	
+
+#loginasadmin
 def loginasadmin():
 	global plaintext
 	passwd=GP(prompt="Enter password for logging in:",stream=None)
@@ -33,6 +43,7 @@ def loginasadmin():
 		passwd=GP(prompt="Invalid entry! Enter password again:",stream=None)
 	#login successfull
 	print("Successfully logged in")
+#func to change password
 def changepass():
 	global plaintext
 	passwd=GP(prompt="Enter older password:",stream=None)
@@ -54,18 +65,27 @@ def changepass():
 	setpass(newpasswd)
 	print('new password set successfully!')
 	n=0
-	while(n!=1 and n!=2)
-	n=int(input('do you want to login now(press 1)\ndo you want to again change password(press 2)')
-	if n==1:
-		loginasadmin()
-	elif n==2:
-		changepass()	
-while(choice!=1 and choice!=2)
-	choice=int(input('for logging in as admin(press1)\nfor changing admin password(press2)')
-	if(choice==1):
-		loginasadmin()
-	elif(choice==2):
-		changepass()
+	while(n!=1 and n!=2):
+		n=int(input('do you want to login now(press 1)\ndo you want to again change password(press 2)'))
+		if n==1:
+			loginasadmin()
+		elif n==2:
+			changepass()
+#loggingin/changingpassword
+choice=int(input('for logging in as admin(press1)\nfor changing admin password(press2)'))
+if(choice==1):
+	loginasadmin()	
+else:
+	while(choice!=1):
+		choice=int(input('for logging in as admin(press1)\nfor changing admin password(press2)'))
+		if(choice==1):
+			loginasadmin()
+		elif(choice==2):
+			changepass()
+		else:
+			print("enter valid choice")
+
+
 
 
 

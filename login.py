@@ -2,11 +2,12 @@ import os
 from getpass import getpass as GP
 from Crypto.Cipher import AES
 from Crypto import Random
-import pathlib
-#prompts password,default prompt if not specified
+import pathlib 
 path = pathlib.Path('password.enc')
-password=GP(prompt="Set admin password:",stream=None)
-def setpass(p):
+def setpass():
+	global password
+	#prompts password,default prompt if not specified
+	password=GP(prompt="Set admin password:",stream=None)
 	#use os.urandom() method to create a random 16 bytes string
 	#convert to bytes.
 	key = bytes(os.urandom(16))
@@ -15,7 +16,7 @@ def setpass(p):
 	#Create a cipher to use for encryption
 	cipher = AES.new(key,AES.MODE_CFB,iv)
 	#encrypting password
-	ciphertext=cipher.encrypt(p)
+	ciphertext=cipher.encrypt(password)
 	#open create file named-password.enc
 	#write bytes into file
 	with open('password.enc','wb') as file:
@@ -28,7 +29,15 @@ def setpass(p):
 		file.write(iv)
 		file.close()
 if(path.exists()==False):
-	setpass(password)	
-
-
-
+	setpass()	
+#to store email id of admin incase password is lost
+def storem():
+	email=input('enter admin email id to be stored')
+	with open('email.txt','w') as file:
+		file.write(email)
+		file.close()
+path1=pathlib.Path('email.txt')
+if(path1.exists()==False):
+	storem()		
+	
+	
