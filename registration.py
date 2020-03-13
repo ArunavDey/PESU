@@ -1,4 +1,4 @@
-members = {"dummy member":[["11","11","1111"],["11","11","11"]]}
+members = {"lol what":[["11","11","1111"],["11","11","11"]]}
 def newreg():
     name = input("\nEnter Full name: ")
     dob = input("Enter Date of Birth (DD/MM/YYYY): ").split("/")
